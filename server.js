@@ -5,6 +5,11 @@ const db = require("./models")
 const app = express()
 app.use(cors())
 app.use(express.json())
+const mysql = require('mysql2');
+
+const swagggerUI = require("swagger-ui-express")
+const YAML = require('yamljs')
+
 
 app.use(mongooseMorgan({
     connectionString: db.url,
@@ -31,4 +36,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 8096
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
+    console.log('Access http://localhost:8098/doc/ for swagger docs')
 })
